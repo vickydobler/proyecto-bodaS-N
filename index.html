@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sofía & Nico — 14.03.2027</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Bodoni+Moda:ital,wght@0,500;0,700;1,500&display=swap');
+
+  :root{
+    --bg:#0c0c0c;
+    --panel:#161513;
+    --line:rgba(255,255,255,0.12);
+    --cream:#f3ede1;
+    --muted:#a39d8f;
+    --gold:#cda449;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--cream);
+    font-family:'Cormorant Garamond', serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .display{font-family:'Bodoni Moda', serif;}
+  a{color:inherit; text-decoration:none;}
+
+  nav{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:26px 48px; border-bottom:1px solid var(--line);
+    position:sticky; top:0; background:rgba(12,12,12,0.85); backdrop-filter:blur(10px); z-index:10;
+  }
+  .nav-mark{font-family:'Bodoni Moda', serif; font-weight:700; letter-spacing:0.05em; font-size:1.1rem; color:var(--gold);}
+  .navlinks{display:flex; gap:32px; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.14em;}
+  .navlinks a{color:var(--muted); transition:color .2s ease;}
+  .navlinks a:hover{color:var(--gold);}
+
+  .hero{
+    min-height:90vh; display:grid; grid-template-columns:1fr 1fr; align-items:center;
+    padding:60px 48px; max-width:1200px; margin:0 auto; gap:40px;
+  }
+  .hero-left{border-right:1px solid var(--line); padding-right:40px;}
+  .kicker{font-size:0.78rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:26px;}
+  .hero h1{
+    font-family:'Bodoni Moda', serif; font-style:italic; font-weight:500;
+    font-size:clamp(3rem, 6vw, 4.6rem); line-height:1.05; margin-bottom:26px;
+  }
+  .hero .sub{font-size:1.15rem; color:var(--muted); line-height:1.6; max-width:400px;}
+
+  .hero-right{text-align:left;}
+  .big-date{
+    font-family:'Bodoni Moda', serif; font-weight:700; font-size:clamp(3.4rem, 8vw, 6.5rem);
+    color:var(--gold); line-height:0.9; letter-spacing:-0.01em;
+  }
+  .hero-right .place{font-size:1.2rem; color:var(--muted); margin-top:18px; font-style:italic;}
+
+  .countdown{display:flex; gap:30px; margin-top:44px; flex-wrap:wrap;}
+  .cd-item{text-align:left;}
+  .cd-num{font-family:'Bodoni Moda', serif; font-size:2.2rem; font-weight:700; color:var(--cream); font-variant-numeric:tabular-nums;}
+  .cd-label{font-size:0.68rem; text-transform:uppercase; letter-spacing:0.14em; color:var(--muted); margin-top:4px;}
+
+  .section{padding:110px 48px; max-width:1100px; margin:0 auto;}
+  .section-head{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:56px; flex-wrap:wrap; gap:20px;}
+  .section-head .eyebrow{font-size:0.78rem; text-transform:uppercase; letter-spacing:0.2em; color:var(--gold); margin-bottom:14px;}
+  .section-head h2{font-family:'Bodoni Moda', serif; font-style:italic; font-weight:500; font-size:clamp(2.2rem,4vw,3.2rem);}
+
+  .agenda-grid{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line);}
+  .agenda-card{background:var(--panel); padding:36px;}
+  .agenda-card .k{font-size:0.72rem; text-transform:uppercase; letter-spacing:0.14em; color:var(--gold); margin-bottom:14px;}
+  .agenda-card .v{font-size:1.5rem; font-weight:500;}
+  .agenda-card .v2{font-size:1.05rem; color:var(--muted); font-style:italic; margin-top:6px;}
+
+  .map-wrap{margin-top:40px; border:1px solid var(--line); position:relative;}
+  .map-wrap iframe{width:100%; height:380px; display:block; filter:grayscale(0.3) contrast(1.05);}
+  .map-cta{
+    display:inline-flex; align-items:center; gap:10px; margin-top:22px;
+    border:1px solid var(--gold); color:var(--gold); padding:14px 30px;
+    font-size:0.85rem; text-transform:uppercase; letter-spacing:0.1em; transition:all .2s ease;
+  }
+  .map-cta:hover{background:var(--gold); color:var(--bg);}
+
+  .details-text{font-size:1.15rem; line-height:1.9; color:var(--muted);}
+  .details-text p{margin-bottom:20px;}
+  .details-text strong{color:var(--gold); font-weight:600;}
+
+  .rsvp-block{text-align:center; padding:110px 48px; border-top:1px solid var(--line);}
+  .rsvp-block h2{font-family:'Bodoni Moda', serif; font-style:italic; font-size:clamp(2.4rem,5vw,3.6rem); margin-bottom:30px;}
+  .rsvp-btn{
+    display:inline-block; background:var(--gold); color:var(--bg);
+    padding:18px 46px; font-size:0.9rem; text-transform:uppercase; letter-spacing:0.14em; font-weight:600;
+    transition:all .2s ease;
+  }
+  .rsvp-btn:hover{background:var(--cream);}
+
+  .gift-box{border:1px solid var(--line); background:var(--panel); padding:34px; margin-top:24px;}
+  .gift-box .alias{font-family:'Bodoni Moda', serif; font-size:1.3rem; color:var(--gold); margin:10px 0;}
+
+  footer{text-align:center; padding:40px; border-top:1px solid var(--line); color:var(--muted); font-size:0.8rem; letter-spacing:0.08em;}
+
+  .illus{position:absolute; pointer-events:none; opacity:0.9;}
+  .illus svg{display:block;}
+  .hero{position:relative;}
+  .illus-corner-tl{top:20px; left:20px; width:120px;}
+  .illus-corner-br{bottom:20px; right:20px; width:120px; transform:rotate(180deg);}
+  .branch-divider{display:flex; align-items:center; justify-content:center; margin:0 auto 50px; width:220px;}
+  .footer-illus{margin:0 auto 14px; width:90px;}
+
+  @media (max-width:820px){
+    .hero{grid-template-columns:1fr; text-align:left;}
+    .hero-left{border-right:none; border-bottom:1px solid var(--line); padding-right:0; padding-bottom:36px;}
+    .agenda-grid{grid-template-columns:1fr;}
+    .navlinks{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-mark">S &amp; N</div>
+  <div class="navlinks">
+    <a href="#agenda">Agenda</a>
+    <a href="#llegar">Ubicación</a>
+    <a href="#detalles">Detalles</a>
+    <a href="#regalo">Colaborar</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="illus illus-corner-tl">
+    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 4C20 6 34 14 40 28C46 42 44 58 34 68" stroke="#cda449" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M4 4C10 16 14 30 12 44" stroke="#cda449" stroke-width="1" stroke-linecap="round"/>
+      <ellipse cx="18" cy="12" rx="7" ry="3.5" transform="rotate(35 18 12)" stroke="#cda449" stroke-width="1"/>
+      <ellipse cx="28" cy="22" rx="8" ry="4" transform="rotate(50 28 22)" stroke="#cda449" stroke-width="1"/>
+      <circle cx="38" cy="30" r="4" stroke="#e08a8a" stroke-width="1"/>
+      <path d="M8 26C14 30 18 36 18 44" stroke="#8a9b6e" stroke-width="1" stroke-linecap="round"/>
+      <ellipse cx="20" cy="40" rx="6" ry="3" transform="rotate(70 20 40)" stroke="#8a9b6e" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="illus illus-corner-br">
+    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 4C20 6 34 14 40 28C46 42 44 58 34 68" stroke="#cda449" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M4 4C10 16 14 30 12 44" stroke="#cda449" stroke-width="1" stroke-linecap="round"/>
+      <ellipse cx="18" cy="12" rx="7" ry="3.5" transform="rotate(35 18 12)" stroke="#cda449" stroke-width="1"/>
+      <ellipse cx="28" cy="22" rx="8" ry="4" transform="rotate(50 28 22)" stroke="#cda449" stroke-width="1"/>
+      <circle cx="38" cy="30" r="4" stroke="#e08a8a" stroke-width="1"/>
+      <path d="M8 26C14 30 18 36 18 44" stroke="#8a9b6e" stroke-width="1" stroke-linecap="round"/>
+      <ellipse cx="20" cy="40" rx="6" ry="3" transform="rotate(70 20 40)" stroke="#8a9b6e" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="hero-left">
+    <div class="kicker">¡Nos casamos!</div>
+    <h1>Sofía &amp; Nico</h1>
+    <p class="sub">Te invitamos a celebrar y compartir este día especial con nosotros, junto al lago.</p>
+  </div>
+  <div class="hero-right">
+    <div class="big-date">14.03<br>2027</div>
+    <div class="place">Bariloche, Río Negro</div>
+
+    <div class="countdown" id="countdown">
+      <div class="cd-item"><div class="cd-num" id="cd-days">00</div><div class="cd-label">Días</div></div>
+      <div class="cd-item"><div class="cd-num" id="cd-hours">00</div><div class="cd-label">Horas</div></div>
+      <div class="cd-item"><div class="cd-num" id="cd-min">00</div><div class="cd-label">Min</div></div>
+      <div class="cd-item"><div class="cd-num" id="cd-sec">00</div><div class="cd-label">Seg</div></div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="agenda">
+  <div class="branch-divider">
+    <svg viewBox="0 0 220 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="40">
+      <path d="M10 20C50 10 90 30 110 20C130 10 170 30 210 20" stroke="#cda449" stroke-width="1" stroke-linecap="round"/>
+      <ellipse cx="55" cy="14" rx="6" ry="3" transform="rotate(-20 55 14)" stroke="#8a9b6e" stroke-width="1"/>
+      <ellipse cx="90" cy="27" rx="6" ry="3" transform="rotate(20 90 27)" stroke="#8a9b6e" stroke-width="1"/>
+      <circle cx="110" cy="20" r="3.5" stroke="#e08a8a" stroke-width="1"/>
+      <ellipse cx="135" cy="14" rx="6" ry="3" transform="rotate(-20 135 14)" stroke="#8a9b6e" stroke-width="1"/>
+      <ellipse cx="165" cy="27" rx="6" ry="3" transform="rotate(20 165 27)" stroke="#8a9b6e" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Agendalo</div>
+      <h2>Cuándo y dónde</h2>
+    </div>
+  </div>
+  <div class="agenda-grid">
+    <div class="agenda-card">
+      <div class="k">Fecha y hora</div>
+      <div class="v">14 de marzo de 2027</div>
+      <div class="v2">18:00hs</div>
+    </div>
+    <div class="agenda-card">
+      <div class="k">Lugar</div>
+      <div class="v">Refugio del Lago</div>
+      <div class="v2">Circuito Chico, Bariloche</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="llegar">
+  <div class="branch-divider">
+    <svg viewBox="0 0 220 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="40">
+      <path d="M10 20C50 10 90 30 110 20C130 10 170 30 210 20" stroke="#cda449" stroke-width="1" stroke-linecap="round"/>
+      <ellipse cx="55" cy="14" rx="6" ry="3" transform="rotate(-20 55 14)" stroke="#8a9b6e" stroke-width="1"/>
+      <ellipse cx="90" cy="27" rx="6" ry="3" transform="rotate(20 90 27)" stroke="#8a9b6e" stroke-width="1"/>
+      <circle cx="110" cy="20" r="3.5" stroke="#e08a8a" stroke-width="1"/>
+      <ellipse cx="135" cy="14" rx="6" ry="3" transform="rotate(-20 135 14)" stroke="#8a9b6e" stroke-width="1"/>
+      <ellipse cx="165" cy="27" rx="6" ry="3" transform="rotate(20 165 27)" stroke="#8a9b6e" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Te vemos ahí</div>
+      <h2>Cómo llegar</h2>
+    </div>
+  </div>
+  <p class="details-text" style="margin-bottom:0;">El evento es en <strong>Circuito Chico</strong>, Bariloche — fácil acceso en auto propio, remis o transfer. Tocá el mapa para abrir la ubicación exacta en Google Maps.</p>
+
+  <a href="https://www.google.com/maps/search/?api=1&query=Circuito+Chico%2C+Bariloche%2C+R%C3%ADo+Negro%2C+Argentina" target="_blank" class="map-wrap" style="display:block; text-decoration:none;">
+    <iframe
+      src="https://www.google.com/maps?q=Circuito+Chico,+Bariloche,+R%C3%ADo+Negro,+Argentina&output=embed"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </a>
+
+  <a href="https://www.google.com/maps/search/?api=1&query=Circuito+Chico%2C+Bariloche%2C+R%C3%ADo+Negro%2C+Argentina" target="_blank" class="map-cta">
+    📍 Abrir en Google Maps
+  </a>
+</section>
+
+<section class="section" id="detalles">
+  <div class="branch-divider">
+    <svg viewBox="0 0 220 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="40">
+      <path d="M10 20C50 10 90 30 110 20C130 10 170 30 210 20" stroke="#cda449" stroke-width="1" stroke-linecap="round"/>
+      <ellipse cx="55" cy="14" rx="6" ry="3" transform="rotate(-20 55 14)" stroke="#8a9b6e" stroke-width="1"/>
+      <ellipse cx="90" cy="27" rx="6" ry="3" transform="rotate(20 90 27)" stroke="#8a9b6e" stroke-width="1"/>
+      <circle cx="110" cy="20" r="3.5" stroke="#e08a8a" stroke-width="1"/>
+      <ellipse cx="135" cy="14" rx="6" ry="3" transform="rotate(-20 135 14)" stroke="#8a9b6e" stroke-width="1"/>
+      <ellipse cx="165" cy="27" rx="6" ry="3" transform="rotate(20 165 27)" stroke="#8a9b6e" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">A tener en cuenta</div>
+      <h2>Detalles</h2>
+    </div>
+  </div>
+  <div class="details-text">
+    <p>La fiesta va a ser en su mayoría al aire libre, junto al lago — <strong>traé abrigo</strong> para cuando refresque al caer la noche.</p>
+    <p>Nosotros nos vamos a lookear <strong>elegante montaña</strong>, pero el dress code es libre: vení con lo que te haga sentir cómodo.</p>
+    <p>No te olvides de un <strong>calzado cómodo</strong> para bailar — va a haber un espacio para guardarlo cuando te lo quieras cambiar.</p>
+  </div>
+</section>
+
+<section class="section" id="regalo">
+  <div class="branch-divider">
+    <svg viewBox="0 0 220 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="40">
+      <path d="M10 20C50 10 90 30 110 20C130 10 170 30 210 20" stroke="#cda449" stroke-width="1" stroke-linecap="round"/>
+      <ellipse cx="55" cy="14" rx="6" ry="3" transform="rotate(-20 55 14)" stroke="#8a9b6e" stroke-width="1"/>
+      <ellipse cx="90" cy="27" rx="6" ry="3" transform="rotate(20 90 27)" stroke="#8a9b6e" stroke-width="1"/>
+      <circle cx="110" cy="20" r="3.5" stroke="#e08a8a" stroke-width="1"/>
+      <ellipse cx="135" cy="14" rx="6" ry="3" transform="rotate(-20 135 14)" stroke="#8a9b6e" stroke-width="1"/>
+      <ellipse cx="165" cy="27" rx="6" ry="3" transform="rotate(20 165 27)" stroke="#8a9b6e" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">¿Nos querés regalar algo?</div>
+      <h2>Colaborar</h2>
+    </div>
+  </div>
+  <p class="details-text" style="margin-bottom:0;">Para nosotros ya es un regalo tenerte ahí, compartiendo y celebrando. Si igual querés colaborar, podés hacerlo al siguiente alias.</p>
+  <div class="gift-box">
+    <div class="k" style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.14em; color:var(--gold);">Alias</div>
+    <div class="alias">sofiaynico.boda</div>
+    <p style="font-size:0.95rem; color:var(--muted);">Si preferís efectivo, vamos a tener un espacio dispuesto en la fiesta.</p>
+  </div>
+</section>
+
+<div class="rsvp-block">
+  <h2>¿Nos acompañás?</h2>
+  <a href="#" class="rsvp-btn">Confirmar asistencia</a>
+</div>
+
+<footer>
+  <div class="footer-illus">
+    <svg viewBox="0 0 90 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M45 30C40 20 30 14 20 16" stroke="#cda449" stroke-width="1" stroke-linecap="round"/>
+      <path d="M45 30C50 20 60 14 70 16" stroke="#cda449" stroke-width="1" stroke-linecap="round"/>
+      <ellipse cx="22" cy="12" rx="6" ry="3" transform="rotate(-30 22 12)" stroke="#8a9b6e" stroke-width="1"/>
+      <ellipse cx="68" cy="12" rx="6" ry="3" transform="rotate(30 68 12)" stroke="#8a9b6e" stroke-width="1"/>
+      <circle cx="45" cy="30" r="4" stroke="#e08a8a" stroke-width="1"/>
+    </svg>
+  </div>
+  SOFÍA &amp; NICO · 14.03.2027 · BARILOCHE, ARGENTINA
+</footer>
+
+<script>
+  const weddingDate = new Date("2027-03-14T18:00:00");
+
+  function updateCountdown(){
+    const now = new Date();
+    let diff = weddingDate - now;
+    if(diff < 0) diff = 0;
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const mins = Math.floor((diff / (1000*60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+
+    document.getElementById('cd-days').textContent = String(days).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-min').textContent = String(mins).padStart(2,'0');
+    document.getElementById('cd-sec').textContent = String(secs).padStart(2,'0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
